@@ -23,7 +23,10 @@ lateinit var binding:FragmentLandingBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.include.btnLoginSignup.setOnClickListener {
+        binding.appBar.btnLoginSignup.setOnClickListener {
+            findNavController().navigate(R.id.action_landingFragment_to_loginFragment)
+        }
+        binding.btnGetStarted.setOnClickListener {
             findNavController().navigate(R.id.action_landingFragment_to_loginFragment)
         }
     }

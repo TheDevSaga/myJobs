@@ -5,19 +5,31 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.myjobs.R
+import com.example.myjobs.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
 
-
-
+    lateinit var binding:FragmentLoginBinding
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentLoginBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.tvCreateAcc.setOnClickListener{
+            findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+        }
+        binding.tvBack.setOnClickListener{
+            findNavController().navigate(R.id.action_loginFragment_to_landingFragment)
+        }
+        binding.tvForgotPass.setOnClickListener{
+            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+        }
 
+    }
 }

@@ -10,7 +10,7 @@
     tools:context=".modules.authentication.LandingFragment">
 
     <include
-        android:id="@+id/include"
+        android:id="@+id/appBar"
         layout="@layout/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         android:layout_height="0dp"
         android:background="@color/light_blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include">
+        app:layout_constraintTop_toBottomOf="@id/appBar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -50,20 +50,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
-                android:text="Welcome to MyJobs"
+                android:text="@string/welcome_to_myjobs"
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="0dp"
                 android:layout_height="300dp"
                 android:layout_marginTop="20dp"
-                android:contentDescription="b"
                 android:paddingBottom="20dp"
                 android:src="@drawable/onboard"
+                android:importantForAccessibility="no"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text=" Why Us"
+                android:text="@string/why_us"
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -92,7 +92,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button2"
+            android:id="@+id/btnGetStarted"
             style="@style/buttonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
             android:layout_marginStart="44dp"
             android:layout_marginEnd="44dp"
             android:backgroundTintMode="add"
-            android:text="Get Started"
+            android:text="@string/get_started"
             app:cornerRadius="5dp" />
 
     </com.google.android.material.card.MaterialCardView>

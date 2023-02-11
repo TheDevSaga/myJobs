@@ -7,7 +7,7 @@
     android:background="@color/light_blue"
     android:fillViewport="true"
     android:importantForAccessibility="no"
-    tools:context=".modules.authentication.LandingFragment">
+    tools:context=".modules.authentication.landing.LandingFragment">
 
     <include
         android:id="@+id/appBar"

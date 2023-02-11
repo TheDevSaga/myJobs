@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/landingFragment"
-        android:name="com.example.myjobs.modules.authentication.LandingFragment"
+        android:name="com.example.myjobs.modules.authentication.landing.LandingFragment"
         android:label="fragment_landing"
         tools:layout="@layout/fragment_landing" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.myjobs.modules.authentication.LoginFragment"
+        android:name="com.example.myjobs.modules.authentication.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.myjobs.modules.authentication.SignUpFragment"
+        android:name="com.example.myjobs.modules.authentication.signup.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.example.myjobs.modules.authentication.ForgotPasswordFragment"
+        android:name="com.example.myjobs.modules.authentication.forgot_password.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password" >
         <action

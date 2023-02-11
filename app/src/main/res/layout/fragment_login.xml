@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    tools:context=".modules.authentication.LoginFragment">
+    tools:context=".modules.authentication.login.LoginFragment">
 
 
     <View
@@ -75,16 +75,18 @@
                 android:textSize="16sp" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField"
+                android:id="@+id/etEmail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:hintEnabled="false">
+                app:hintEnabled="false"
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/email" />
+                    android:hint="@string/email"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,7 +113,7 @@
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tvPassword"
+                android:id="@+id/etPassword"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -128,6 +130,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
                 style="@style/buttonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

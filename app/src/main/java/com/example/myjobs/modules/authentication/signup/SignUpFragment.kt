@@ -1,4 +1,4 @@
-package com.example.myjobs.modules.authentication
+package com.example.myjobs.modules.authentication.signup
 
 import android.os.Bundle
 import android.view.LayoutInflater

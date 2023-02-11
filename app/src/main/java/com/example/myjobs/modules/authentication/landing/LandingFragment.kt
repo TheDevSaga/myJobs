@@ -1,4 +1,4 @@
-package com.example.myjobs.modules.authentication
+package com.example.myjobs.modules.authentication.landing
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

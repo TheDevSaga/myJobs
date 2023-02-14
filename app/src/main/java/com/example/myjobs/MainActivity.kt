@@ -17,12 +17,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         fun goToDashboard() {
-            startActivity(Intent(this, AuthenticationActivity::class.java))
+            startActivity(Intent(this, DashboardActivity::class.java))
             finish()
         }
 
         fun goToOnboard() {
-            startActivity(Intent(this, DashboardActivity::class.java))
+            startActivity(Intent(this, AuthenticationActivity::class.java))
             finish()
         }
         lifecycleScope.launchWhenStarted {

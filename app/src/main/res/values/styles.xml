@@ -13,4 +13,18 @@
         <item name="android:background">@color/gray_400</item>
         <item name="exampleColor">@color/light_blue_400</item>
     </style>
+
+    <style name="TextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
+        <item name="boxStrokeColor">@color/blue</item>
+        <item name="errorIconDrawable">@null</item>
+        <item name="boxCornerRadiusBottomEnd">5dp</item>
+        <item name="boxCornerRadiusBottomStart">5dp</item>
+        <item name="boxCornerRadiusTopStart">5dp</item>
+        <item name="boxCornerRadiusTopEnd">5dp</item>
+        <item name="boxBackgroundColor">@color/gray_100</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="boxStrokeWidth">0.5dp</item>
+        <item name="strokeColor">@color/gray_400</item>
+
+    </style>
 </resources>

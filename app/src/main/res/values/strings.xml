@@ -29,4 +29,6 @@
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="forgot_password_des">Enter the email associated with your account and we’ll send you instructions to reset your password.</string>
     <string name="submit">Submit</string>
+    <string name="recruiter">Recruiter</string>
+    <string name="candidate">Candidate</string>
 </resources>

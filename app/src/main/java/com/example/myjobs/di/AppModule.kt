@@ -2,6 +2,7 @@ package com.example.myjobs.di
 
 import com.example.myjobs.constants.Constants
 import com.example.myjobs.data.api.AuthApiService
+import com.example.myjobs.data.db.UserDao
 import com.example.myjobs.data.repository.AuthRepository
 import dagger.Module
 import dagger.Provides
@@ -39,6 +40,6 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideAuthRepository(apiService: AuthApiService): AuthRepository =
-        AuthRepository(apiService)
+    fun provideAuthRepository(apiService: AuthApiService,userDao: UserDao): AuthRepository =
+        AuthRepository(apiService,userDao)
 }

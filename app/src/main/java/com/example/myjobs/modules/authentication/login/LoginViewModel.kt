@@ -2,6 +2,7 @@ package com.example.myjobs.modules.authentication.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myjobs.data.models.local.User
 import com.example.myjobs.data.models.request.LoginRequest
 import com.example.myjobs.data.repository.AuthRepository
 import com.example.myjobs.utils.Resource
@@ -16,10 +17,9 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val repository: AuthRepository
 ) : ViewModel() {
-
     sealed class LoginEvent {
         object Initial : LoginEvent()
-        class WrongData(val emailError: Boolean,val  passwordError: Boolean) : LoginEvent()
+        class WrongData(val emailError: Boolean, val passwordError: Boolean) : LoginEvent()
         object Loading : LoginEvent()
         object Success : LoginEvent()
         class Error(val msg: String) : LoginEvent()
@@ -38,14 +38,18 @@ class LoginViewModel @Inject constructor(
             val loginRequest = LoginRequest(email, password)
 
             when (val response = repository.login(loginRequest)) {
-                is Resource.Error ->
-                    _loginFlow.value = LoginEvent.Error(response.message!!)
-                is Resource.Success ->
+                is Resource.Error -> _loginFlow.value = LoginEvent.Error(response.message!!)
+                is Resource.Success -> {
+                    setUser(User.from(response.data!!.data!!))
                     _loginFlow.value = LoginEvent.Success
+                }
             }
         }
 
     }
 
+    private suspend fun setUser(user: User){
+        repository.setUser(user)
+    }
 
 }

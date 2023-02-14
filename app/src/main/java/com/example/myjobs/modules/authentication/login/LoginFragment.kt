@@ -1,5 +1,6 @@
 package com.example.myjobs.modules.authentication.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.myjobs.R
 import com.example.myjobs.databinding.FragmentLoginBinding
+import com.example.myjobs.modules.dashboard.DashboardActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,18 +48,27 @@ class LoginFragment : Fragment() {
             binding.etEmail.isErrorEnabled =false
             binding.etPassword.isErrorEnabled = false
         }
+
+
         lifecycleScope.launchWhenStarted {
             viewModel.loginFlow.collect(){event->
                 when(event){
                     is LoginViewModel.LoginEvent.Error -> {
                         Toast.makeText(context,event.msg,Toast.LENGTH_SHORT).show()
+                        binding.btnLogin.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.GONE
                     }
                     is LoginViewModel.LoginEvent.Initial -> {
                     }
                     is LoginViewModel.LoginEvent.Loading -> {
                         disableError()
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.btnLogin.visibility = View.GONE
                     }
-                    is LoginViewModel.LoginEvent.Success ->{}
+                    is LoginViewModel.LoginEvent.Success ->{
+                        startActivity(Intent(context,DashboardActivity::class.java))
+                        activity?.finish()
+                    }
                     is LoginViewModel.LoginEvent.WrongData -> {
                         if(event.emailError){
                             binding.etEmail.error ="Enter valid Email"

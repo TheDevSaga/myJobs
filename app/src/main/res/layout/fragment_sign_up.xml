@@ -194,12 +194,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
+                        app:passwordToggleEnabled="true"
                         app:hintEnabled="false">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/enter_your_password" />
+                            android:hint="@string/enter_your_password"
+                            android:inputType="textPassword"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -216,12 +218,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
-                        app:hintEnabled="false">
+                        app:hintEnabled="false"
+                        app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/enter_your_email" />
+                            android:hint="@string/enter_your_email"
+                            android:inputType="textPassword"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 

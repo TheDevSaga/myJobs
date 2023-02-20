@@ -20,7 +20,7 @@ object DatabaseModule {
         return Room.databaseBuilder(
             appContext,
             UserDatabase::class.java,
-            "RssReader"
+            "MyJobs"
         ).build()
     }
     @Provides

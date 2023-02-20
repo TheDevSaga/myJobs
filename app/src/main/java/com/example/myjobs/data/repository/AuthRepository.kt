@@ -1,5 +1,6 @@
 package com.example.myjobs.data.repository
 
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import com.example.myjobs.data.api.AuthApiService
 import com.example.myjobs.data.db.UserDao
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class AuthRepository @Inject constructor(
     private val authApiService: AuthApiService,
     private  val userDao:UserDao,
+    private val sharedPreferences: SharedPreferences
 ) {
     suspend fun login(loginRequest: LoginRequest): Resource<NetworkResponse<LoginResponse>> {
         return try {
@@ -33,10 +35,13 @@ class AuthRepository @Inject constructor(
         }
     }
 
-    fun getUser():LiveData<User>{
+     fun getUser(): LiveData<User> {
         return userDao.getUser()
     }
     suspend fun setUser(user: User):Long{
+        val editor = sharedPreferences.edit()
+        editor.putString("token", user.token)
+        editor.apply()
         return userDao.setUser(user)
     }
 }

@@ -7,8 +7,8 @@ import com.example.myjobs.data.models.response.SignUpResponse
 
 @Entity(tableName = "user")
 data class User(
-    @PrimaryKey(autoGenerate = true)
-    var uid: Int?,
+    @PrimaryKey
+    var uid: Int = 0,
     val createdAt: String,
     val email: String,
     val id: String,
@@ -20,8 +20,7 @@ data class User(
 ){
     companion object{
         fun from(loginResponse: LoginResponse):User{
-            return User(
-                null,
+            return User(0,
                 loginResponse.createdAt,
                 loginResponse.email,
                 loginResponse.id,
@@ -34,7 +33,7 @@ data class User(
         }
         fun from(signUpResponse: SignUpResponse):User{
             return User(
-                null,
+                0,
                 signUpResponse.createdAt,
                 signUpResponse.email,
                 signUpResponse.id,

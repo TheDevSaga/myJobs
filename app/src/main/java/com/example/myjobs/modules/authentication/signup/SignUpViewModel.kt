@@ -6,6 +6,7 @@ import com.example.myjobs.data.models.local.User
 import com.example.myjobs.data.models.request.SignUpRequest
 import com.example.myjobs.data.repository.AuthRepository
 import com.example.myjobs.utils.Resource
+import com.example.myjobs.utils.isValidEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -49,7 +50,7 @@ class SignUpViewModel @Inject constructor(
             hasError = true
             wrongData.nameError = true
         }
-        if (email.isEmpty()) {
+        if (!email.isValidEmail()) {
             hasError = true
             wrongData.emailError = true
         }
@@ -67,22 +68,21 @@ class SignUpViewModel @Inject constructor(
         }
         _signUPFlow.value = SignUpEvent.Loading
         viewModelScope.launch(Dispatchers.IO) {
-            val signUpRequest = SignUpRequest(email,password,userType, cPassword,name,skills)
+            val signUpRequest = SignUpRequest(email, password, userType, cPassword, name, skills)
             when (val response = repository.signUp(signUpRequest)) {
-                is Resource.Error -> _signUPFlow.value =SignUpEvent.Error(response.message!!)
+                is Resource.Error -> _signUPFlow.value = SignUpEvent.Error(response.message!!)
                 is Resource.Success -> {
                     setUser(User.from(response.data!!.data!!))
                     _signUPFlow.value = SignUpEvent.Success
                 }
             }
         }
-
-
     }
 
-    private suspend fun setUser(user: User){
+    private suspend fun setUser(user: User) {
         repository.setUser(user)
     }
+
     fun switchUserType(type: Int) {
         userType = type
     }

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.example.myjobs.modules.authentication.AuthenticationActivity
 import com.example.myjobs.modules.dashboard.DashboardActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,21 +24,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, AuthenticationActivity::class.java))
             finish()
         }
-        lifecycleScope.launchWhenStarted {
-            viewModel.mainStateFlow.collect() { event ->
-                when (event) {
-                    MainViewModel.MainEvent.Authenticated -> {
-                        goToDashboard()
-                    }
-                    MainViewModel.MainEvent.Initial -> {
-                    }
-                    MainViewModel.MainEvent.New -> {
-                        goToOnboard()
-                    }
-                }
+
+
+        viewModel.user.observe(this) { user ->
+            if (user == null) {
+                goToOnboard()
+            } else {
+                goToDashboard()
             }
         }
-
     }
 
 }

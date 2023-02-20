@@ -31,4 +31,9 @@
     <string name="submit">Submit</string>
     <string name="recruiter">Recruiter</string>
     <string name="candidate">Candidate</string>
+    <string name="logout">Logout</string>
+    <string name="applied_jobs">Applied Jobs</string>
+    <string name="home">Home</string>
+    <string name="jobs_for_you">Jobs for you</string>
+    <string name="apply">Apply</string>
 </resources>

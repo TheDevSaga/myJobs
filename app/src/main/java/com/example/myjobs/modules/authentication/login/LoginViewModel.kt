@@ -6,6 +6,7 @@ import com.example.myjobs.data.models.local.User
 import com.example.myjobs.data.models.request.LoginRequest
 import com.example.myjobs.data.repository.AuthRepository
 import com.example.myjobs.utils.Resource
+import com.example.myjobs.utils.isValidEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +20,7 @@ class LoginViewModel @Inject constructor(
 ) : ViewModel() {
     sealed class LoginEvent {
         object Initial : LoginEvent()
-        class WrongData(val emailError: Boolean, val passwordError: Boolean) : LoginEvent()
+        class WrongData(var emailError: Boolean =false, var passwordError: Boolean=false) : LoginEvent()
         object Loading : LoginEvent()
         object Success : LoginEvent()
         class Error(val msg: String) : LoginEvent()
@@ -29,8 +30,19 @@ class LoginViewModel @Inject constructor(
     val loginFlow: StateFlow<LoginEvent> = _loginFlow
 
     fun login(email: String, password: String) {
-        if (email.isEmpty() || password.isEmpty()) {
-            _loginFlow.value = LoginEvent.WrongData(email.isEmpty(), password.isEmpty())
+        var hasError = false
+        val wrongData = LoginEvent.WrongData()
+
+        if (!email.isValidEmail()) {
+            hasError = true
+            wrongData.emailError = true
+        }
+        if (password.length < 6) {
+            hasError = true
+            wrongData.passwordError = true
+        }
+        if (hasError) {
+            _loginFlow.value = wrongData
             return
         }
         _loginFlow.value = LoginEvent.Loading
@@ -48,7 +60,7 @@ class LoginViewModel @Inject constructor(
 
     }
 
-    private suspend fun setUser(user: User){
+    private suspend fun setUser(user: User) {
         repository.setUser(user)
     }
 

@@ -1,10 +1,10 @@
 package com.example.myjobs.data.models.response
 
 data class JobListResponseItem(
-    val createdAt: String,
-    val description: String,
-    val id: String,
-    val location: String,
-    val title: String,
-    val updatedAt: String
+    val createdAt: String? = null,
+    val description: String? = null,
+    val id: String? = null,
+    val location: String? = null,
+    val title: String? = null,
+    val updatedAt: String? = null
 )

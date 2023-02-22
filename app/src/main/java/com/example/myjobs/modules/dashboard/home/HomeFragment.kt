@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myjobs.adapters.JobListAdapter
-import com.example.myjobs.data.models.response.JobListResponse
 import com.example.myjobs.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,7 +28,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val jobListAdapter = JobListAdapter(requireContext(), JobListResponse())
+        val jobListAdapter = JobListAdapter(requireContext())
         binding.rvApplyJobList.adapter = jobListAdapter
         binding.rvApplyJobList.layoutManager = LinearLayoutManager(activity)
 
@@ -45,8 +44,7 @@ class HomeFragment : Fragment() {
                         }
                         is HomeViewModel.HomeEvent.Success -> {
                             binding.progressBar.visibility = View.GONE
-                            jobListAdapter.jobListResponse = event.jobListResponse
-                            jobListAdapter.notifyDataSetChanged()
+                            jobListAdapter.submitList(event.jobListResponse)
                         }
                     }
                 }

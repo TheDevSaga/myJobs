@@ -3,6 +3,7 @@ package com.example.myjobs.modules.dashboard.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myjobs.data.models.response.JobListResponse
+import com.example.myjobs.data.models.response.JobListResponseItem
 import com.example.myjobs.data.repository.JobRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +27,9 @@ class HomeViewModel @Inject constructor(jobRepository: JobRepository) : ViewMode
         viewModelScope.launch(Dispatchers.IO) {
             val response = jobRepository.getAvailableJob()
             if(response.data?.data!=null){
-                _homeStateFlow.value = HomeEvent.Success(response.data.data)
+                val list = response.data.data;
+                list.add(0, JobListResponseItem())
+                _homeStateFlow.value = HomeEvent.Success(list)
             }
         }
     }

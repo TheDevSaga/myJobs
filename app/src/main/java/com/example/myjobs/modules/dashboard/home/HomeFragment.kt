@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myjobs.adapters.JobListAdapter
+import com.example.myjobs.adapters.LoadAdapter
 import com.example.myjobs.databinding.FragmentHomeBinding
+import com.example.myjobs.paging.AvailableJobsPagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,28 +30,29 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val jobListAdapter = JobListAdapter(requireContext())
-        binding.rvApplyJobList.adapter = jobListAdapter
+        val availableJobsAdapter = AvailableJobsPagingAdapter()
+        binding.rvApplyJobList.adapter =
+            availableJobsAdapter.withLoadStateFooter(footer = LoadAdapter())
         binding.rvApplyJobList.layoutManager = LinearLayoutManager(activity)
+        binding.rvApplyJobList.setHasFixedSize(true)
 
+        viewModel.jobList.observe(
+            viewLifecycleOwner
+        ) {
+            availableJobsAdapter.submitData(lifecycle, it)
+        }
         lifecycleScope.launchWhenStarted {
-            viewModel.homeStateFlow.collect() { event ->
-                run {
-                    when (event) {
-                        HomeViewModel.HomeEvent.Loading -> {
-
-                        }
-                        HomeViewModel.HomeEvent.LoadingNext -> {
-
-                        }
-                        is HomeViewModel.HomeEvent.Success -> {
-                            binding.progressBar.visibility = View.GONE
-                            jobListAdapter.submitList(event.jobListResponse)
-                        }
-                    }
+            availableJobsAdapter.loadStateFlow.collect() {
+                if (it.prepend is LoadState.NotLoading && it.prepend.endOfPaginationReached) {
+                    binding.progressBar.visibility = View.GONE
+                }
+                if (it.append is LoadState.NotLoading && it.append.endOfPaginationReached) {
+                // Todo Add Empty State
+                    //                    emptyState.isVisible = adapter.itemCount < 1
                 }
             }
         }
+
     }
 
 

@@ -36,4 +36,11 @@
     <string name="home">Home</string>
     <string name="jobs_for_you">Jobs for you</string>
     <string name="apply">Apply</string>
+    <string name="get_more_visibility">Get More\nVisibility</string>
+    <string name="Lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</string>
+    <string name="verify_the_abilities">Verify The\nAbilities</string>
+    <string name="reset_your_password">Reset Your Password</string>
+    <string name="reset_pass_desc">Enter your new password below.</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
 </resources>

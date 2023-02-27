@@ -75,7 +75,7 @@ object AppModule {
 
         val client = OkHttpClient.Builder()
             .addInterceptor(interceptor)
-            .addInterceptor(AuthInterceptor(sharedPreferences.getString("token", "")))
+            .addInterceptor(AuthInterceptor(sharedPreferences))
         return client.connectTimeout(180, TimeUnit.SECONDS)
             .writeTimeout(180, TimeUnit.SECONDS)
             .readTimeout(180, TimeUnit.SECONDS)

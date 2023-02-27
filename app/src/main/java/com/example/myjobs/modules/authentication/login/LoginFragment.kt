@@ -14,6 +14,7 @@ import com.example.myjobs.R
 import com.example.myjobs.databinding.FragmentLoginBinding
 import com.example.myjobs.modules.dashboard.DashboardActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -66,6 +67,7 @@ class LoginFragment : Fragment() {
                         binding.btnLogin.visibility = View.GONE
                     }
                     is LoginViewModel.LoginEvent.Success ->{
+                        delay(1000)
                         startActivity(Intent(context,DashboardActivity::class.java))
                         activity?.finish()
                     }
